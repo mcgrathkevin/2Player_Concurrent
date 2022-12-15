@@ -38,5 +38,6 @@ trans_dict = {
 game = DTPCGame(actions=actions, trans_dict=trans_dict, start_state=0, y=gamma)
 
 win, pi = game.asw_reach(player=1, final={3})
-print(win)
-print(pi)
+print('Almost-Sure Reachability')
+print(f'States: {win}')
+print(f'Policy: {pi}')
