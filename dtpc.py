@@ -18,17 +18,20 @@ class DTPCGame(models.Game):
         self.states = trans_dict.keys()
         self.y = y
 
-    def asw_reach(self, player, final):
+    def asw_reach(self, player, final, verbose=False):
         """
 
-        :param player: {0, 1} - the player to calculate reachability for
+        :param player: passed in as {1, 2} for readability but converted to {0, 1} for indexing -
+        the player to calculate reachability for
         :param final: final states to reach
+        :param verbose: dispaly intermediate computations for containment and safety regions
         :return: almost-sure-reachability states and policy -> displays message if final cannot be reached from start
         """
         # Let U0 = S, y0 = y[player]
         u = [set(self.states)]
         c = []
         y_list = []
+        player -= 1 # use player = {0, 1}
         opponent = not player
 
         while True:
@@ -45,6 +48,11 @@ class DTPCGame(models.Game):
             if u[-1] == u[-2]:
                 # return Uk and y
                 return u[-2], y_list[-2]
+
+            if verbose:
+                print(f'*** Iteration {len(u)-1} ***')
+                print(f'Player {int(opponent+1)} Confinement Set: {c[-1]}')
+                print(f'Player {int(player+1)} Safe Set: {u[-1]} \nPolicy: {y_list[-1]}\n')
 
     def stay(self, player, u, y):
         """
