@@ -23,8 +23,9 @@ print(f'Policy: {pi}')
 
 **Output**
 ```python
-Player 1 Confinement Set: {2, 3, 4, 5} 
-Player 0 Safe Set: {0, 1} 
+*** Iteration 1 ***
+Player 2 Confinement Set: {2, 3, 4, 5}
+Player 1 Safe Set: {0, 1} 
 Policy: {0: ['c'], 1: ['-']}
 
 ********** Almost-Sure Reachability **********
